@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp
+  namespace: final
+  labels:
+    app.kubernetes.io/name: app
+    app.kubernetes.io/component: frontend
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: app
+      app.kubernetes.io/component: frontend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: app
+        app.kubernetes.io/component: frontend
+    spec:
+      serviceAccountName: clo835
+      nodeSelector:
+        label: use
+      containers:
+      - name: simple-webapp
+        image: 848224205131.dkr.ecr.us-east-1.amazonaws.com/finalproject:app
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: DBPORT
+          value: "3306"
+        envFrom:
+        - configMapRef:
+           name: url-config
+        - secretRef:
+           name: db-secret

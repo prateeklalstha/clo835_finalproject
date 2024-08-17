@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<title>Final Project from Group 5</title>
+<body style="background: {{ color }};"></body>
+<div
+  style="
+    color: #e4e4e4;
+    text-align: center;
+    height: 90px;
+    vertical-align: middle;
+  "
+>
+  <h1>{{ user_name }}</h1>
+  {% if db_connect_result %}
+  <img src="{{ url_for('static', filename='project.jpeg') }}" />
+  <h3>Successfully connected to the MySQL database.</h3>
+  {% else %}
+  <!--<img src="{{ url_for('static', filename='failed.png') }}" />-->
+  <h3>Failed connecting to the MySQL database.</h3>
+  {% endif %}
+  <h3>S3 Bucket Url</h3>
+  {{image_url}} {% if name %}
+  <p>From {{ name }}!</p>
+  {% endif %} {% if contents %}
+  <textarea rows="10" cols="50">
+    {{ contents }}
+  </textarea>
+  {% endif %}
+</div>

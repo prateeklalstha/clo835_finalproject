@@ -1,0 +1,26 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListBucket"
+            ],
+            "Resource": "arn:aws:s3:::clo835project-krishnaas"
+        },
+        {
+            "Effect": "Allow",
+            "Action": "iam:CreateOpenIDConnectProvider",
+            "Resource": "arn:aws:cloud9:us-east-1:848224205131:environment:2ea53b7fd0274c92b8492df3337e4ad3"
+        },
+        {
+            "Sid": "List",
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:GetObjectVersion"
+            ],
+            "Resource": "arn:aws:s3:::clo835project-krishnaas/*"
+        }
+    ]
+}
